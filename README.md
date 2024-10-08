@@ -1,4 +1,4 @@
-# * Projet N°1 de NSI
+# - Projet N°1 de NSI -
 _Premier projet en NSI du groupe Eliot, Alaric et Robin_
 
 * Idées:
