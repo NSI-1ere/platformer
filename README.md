@@ -7,4 +7,4 @@ _Premier projet en NSI du groupe Eliot, Alaric et Robin_
   > 🕹️ Recréation de Geometry Dash (non dans son entièreté) <br> 
   > 🕹️ Jeu de farm (idle ou "actif") <br>
 
-_Allez on se motive pour le 20 mdrr_
+### _Allez on se motive pour le 20/20 mdrr_
