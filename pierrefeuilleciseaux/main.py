@@ -20,7 +20,7 @@ def playAgainst():
 
     value = input("Choisissez le mode de jeu:\n> ")
     if value.isdigit() and (int(value) == 1 or int(value) == 2):
-        return value
+        return int(value)
     clear()
     print("Mode de jeu invalide, veuillez réessayer.")
     return playAgainst()
