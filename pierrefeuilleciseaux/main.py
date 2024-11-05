@@ -71,7 +71,7 @@ for i in range(nombreDeManches):
 
     player1 = pierreFeuilleCiseaux("1")
 
-    if modeDeJeu == "2":
+    if modeDeJeu == 2:
         player2 = pierreFeuilleCiseaux("2")
     else:
         player2 = str(random.randint(1, 3))
