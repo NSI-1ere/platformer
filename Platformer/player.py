@@ -1,5 +1,4 @@
 import pygame as pg
-import sys
 from platforms import PlatformsManager
 from constantes import Constantes
 
@@ -37,9 +36,9 @@ class Player:
         self.velocity_y += self.gravity
         self.y += self.velocity_y
 
-    def check_collision(self):
+    def check_collision(self, platforms):
         self.on_ground = False
-        for platform in self.platform_manager.platforms:
+        for platform in platforms:
             if (
                 self.y + self.height >= platform.top
                 and self.y + self.height <= platform.bottom
@@ -49,11 +48,12 @@ class Player:
                 self.y = platform.top - self.height
                 self.velocity_y = 0
                 self.on_ground = True
+                #print(self.platform_manager.platforms)
 
-    def update(self):
+    def update(self, platforms):
         self.handle_input()
         self.apply_gravity()
-        self.check_collision()
+        self.check_collision(platforms)
 
     def draw(self):
         pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height))

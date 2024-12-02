@@ -15,4 +15,4 @@ class PlatformsManager:
     def draw_platforms(self):
         for platform in self.platforms:
             pg.draw.rect(self.const.SCREEN, self.const.BLUE, platform)
-        #print(platforms)
+        #print(self.platforms)

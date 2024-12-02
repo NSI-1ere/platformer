@@ -20,7 +20,7 @@ class Game:
                     self.running = False
 
             # Mise à jour
-            self.player.update()
+            self.player.update(self.platform_manager.platforms)
 
             # Dessin
             self.const.SCREEN.fill(self.const.WHITE)
