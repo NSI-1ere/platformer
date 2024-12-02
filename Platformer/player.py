@@ -1,4 +1,5 @@
 import pygame as pg
+import tkinter as tk
 from platforms import PlatformsManager
 from constantes import Constantes
 
@@ -32,6 +33,9 @@ class Player:
             self.velocity_y = -10
             self.on_ground = False
 
+        if keys[pg.K_ESCAPE]:
+            pg.quit()
+
     def apply_gravity(self):
         self.velocity_y += self.gravity
         self.y += self.velocity_y
@@ -50,10 +54,15 @@ class Player:
                 self.on_ground = True
                 #print(self.platform_manager.platforms)
 
+    def check_if_gameover(self):
+        if self.y < 0:
+            pg.quit()
+
     def update(self, platforms):
         self.handle_input()
         self.apply_gravity()
         self.check_collision(platforms)
+        self.check_if_gameover()
 
     def draw(self):
         pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height))
