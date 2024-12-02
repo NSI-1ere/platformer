@@ -7,4 +7,4 @@ Some things to add :
  - Opponents
  - Coins or other goals
  - Random platforms
- - Launcher
+ // - Launcher // : Done
