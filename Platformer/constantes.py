@@ -1,4 +1,5 @@
 import pygame as pg
+import tkinter as tk
 
 class Constantes:
     def __init__(self):
@@ -8,7 +9,8 @@ class Constantes:
         self.BLACK = (0, 0, 0)
         self.BLUE = (0, 0, 255)
         self.RED = (255, 0, 0)
-        self.SCREEN = pg.display.set_mode((self.WIDTH, self.HEIGHT))
+        self.SCREEN = pg.display.set_mode((0, 0), pg.FULLSCREEN)
         pg.display.set_caption("Platformer")
         self.CLOCK = pg.time.Clock()
         self.FPS = 60
+        self.screenheight = tk.Tk().winfo_screenheight()

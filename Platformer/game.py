@@ -1,5 +1,6 @@
 import pygame as pg
 import sys
+import subprocess
 from player import Player
 from constantes import Constantes
 from platforms import PlatformsManager
@@ -11,6 +12,7 @@ class Game:
         self.platform_manager = PlatformsManager()
         self.clock = self.const.CLOCK
         self.running = True
+        #self.gameover_file = sys.path.append('/platformer/gameover.py')
 
     def run(self):
         while self.running:
@@ -18,6 +20,7 @@ class Game:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.running = False
+                    #subprocess.run(self.gameover_file)
 
             # Mise à jour
             self.player.update(self.platform_manager.platforms)

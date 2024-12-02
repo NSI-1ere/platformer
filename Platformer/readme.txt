@@ -1,8 +1,10 @@
 Program made by Eliot Bordier
 
 Some bugs to fix :
- - Platform collision not well updated
+ - Gameover screen
 
 Some things to add :
  - Opponents
  - Coins or other goals
+ - Random platforms
+ - Launcher
