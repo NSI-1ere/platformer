@@ -1,4 +1,4 @@
-Program made by Eliot Bordier
+Program made by Eliot Bordier, Alaric Remy and Robin Texier
 
 Some bugs to fix :
  - Gameover screen
