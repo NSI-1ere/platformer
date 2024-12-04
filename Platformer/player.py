@@ -33,8 +33,6 @@ class Player:
             self.velocity_y = -10
             self.on_ground = False
 
-        if keys[pg.K_ESCAPE]:
-            pg.quit()
 
     def apply_gravity(self):
         self.velocity_y += self.gravity

@@ -3,6 +3,7 @@ import subprocess
 from pathlib import Path
 from PIL import Image, ImageTk
 from itertools import count, cycle
+import os
 
 class ImageLabel(tk.Label):
     """Un Label qui affiche des images et les joue si ce sont des GIFs."""
@@ -44,15 +45,19 @@ root.resizable(False, False)
 container = tk.Frame(root, width=600, height=300)
 container.pack(fill='both', expand=True)
 
+# Chemin d'accès
+chemin_repertoire = os.path.dirname(os.path.abspath(__file__))
+
+
 lbl = ImageLabel(container)
 lbl.place(relx=0.5, rely=0.5, anchor='center')  # Centré dans le conteneur
-lbl.load(r'.\Launcher.gif')
+lbl.load(chemin_repertoire + r'.\Launcher.gif')
 
 label_title = tk.Label(container, text="Platformer", font=('Papyrus', 30, 'bold'), bg="grey", fg="black")
 label_title.place(relx=0.5, rely=0.2, anchor='center')
 
 # Chemin du programme Python à exécuter
-chemin_platformer = Path(r".\main.py").resolve()
+chemin_platformer = Path(chemin_repertoire + r".\main.py").resolve()
 
 # Exécuter le programme
 def run_program():

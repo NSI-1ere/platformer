@@ -1,6 +1,4 @@
-import pygame as pg
-import sys
-import subprocess
+import sys, os, subprocess, pygame as pg
 from player import Player
 from constantes import Constantes
 from platforms import PlatformsManager
@@ -14,9 +12,10 @@ class Game:
         self.bkscreen = load_backsceen()
         self.clock = self.const.CLOCK
         self.running = True
+        self.chemin_repertoire = os.path.dirname(os.path.abspath(__file__))
 
         # Charger les frames du GIF
-        self.frames = self.bkscreen.load_gif(r'.\Clouds.gif')
+        self.frames = self.bkscreen.load_gif(self.chemin_repertoire + r'.\Clouds.gif')
         self.frame_index = 0
         #self.gameover_file = sys.path.append('/platformer/gameover.py')
 
@@ -25,6 +24,9 @@ class Game:
             # Gestion des événements
             for event in pg.event.get():
                 if event.type == pg.QUIT:
+                    self.running = False
+                    pg.quit()
+                if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                     self.running = False
                     #subprocess.run(self.gameover_file)
 
