@@ -46,13 +46,13 @@ container.pack(fill='both', expand=True)
 
 lbl = ImageLabel(container)
 lbl.place(relx=0.5, rely=0.5, anchor='center')  # Centré dans le conteneur
-lbl.load(r'Python\NSI\Platformer V2\Launcher.gif')
+lbl.load(r'.\Launcher.gif')
 
 label_title = tk.Label(container, text="Platformer", font=('Papyrus', 30, 'bold'), bg="grey", fg="black")
 label_title.place(relx=0.5, rely=0.2, anchor='center')
 
 # Chemin du programme Python à exécuter
-chemin_platformer = Path(r"Python\NSI\Platformer V2\main.py").resolve()
+chemin_platformer = Path(r".\main.py").resolve()
 
 # Exécuter le programme
 def run_program():
