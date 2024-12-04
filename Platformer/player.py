@@ -55,7 +55,7 @@ class Player:
                 #print(self.platform_manager.platforms)
 
     def check_if_gameover(self):
-        if self.y < 0:
+        if self.y > pg.display.Info().current_h:
             pg.quit()
 
     def update(self, platforms):
