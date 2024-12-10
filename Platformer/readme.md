@@ -1,14 +1,14 @@
 ## PLATFORMER, developed by Eliot BORDIER, Alaric REMY and Robin TEXIER
 
-### Known Issues :
+### Known Issues:
  - Gif size (Should we find an other gif ?)
    - Probably should use a motionless picture, or a less noticeable gif. Yes we need to either stretch it, or find one the right size ratio to do so. (We need to stretch it either way, in order to fit all screen sizes)
 
-### To-do list :
+### To-do list:
  - Opponents
  - Coins or other goals
  - Random platforms
 
-### Already done
+### Already done:
  - Launcher
  - Game Over - 10/12/2024
