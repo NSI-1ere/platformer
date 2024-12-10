@@ -12,15 +12,34 @@ class Player:
         self.height = 50
         # Placer le joueur sur la première plateforme
         starting_platform = self.platform_manager.platforms[0]  # Choisir la première plateforme
+        self.original_x = starting_platform.left + (starting_platform.width - self.width) // 2
+        self.original_y = starting_platform.top - self.height
         self.x = starting_platform.left + (starting_platform.width - self.width) // 2  # Centré horizontalement
         self.y = starting_platform.top - self.height  # Juste au-dessus de la plateforme 
         self.speed = 5
         self.velocity_y = 0
         self.gravity = 0.5 
         self.on_ground = True
+    
+    def check_if_gameover(self):
+        if self.y > pg.display.Info().current_h:
+            return True
+        else:
+            return False
 
     def handle_input(self):
         keys = pg.key.get_pressed()
+
+        if (keys[pg.K_RETURN] or keys[pg.K_KP_ENTER]) and self.check_if_gameover() == True:
+            self.x = self.original_x
+            self.y = self.original_y
+            self.velocity_y = 0
+            self.on_ground = True
+            
+
+        # Si le jeu est pausé, on ignore tous les inputs (Sauf entrée).
+        if self.check_if_gameover() == True:
+            return
 
         # Déplacements horizontaux
         if keys[pg.K_LEFT]:
@@ -52,15 +71,11 @@ class Player:
                 self.on_ground = True
                 #print(self.platform_manager.platforms)
 
-    def check_if_gameover(self):
-        if self.y > pg.display.Info().current_h:
-            pg.quit()
-
     def update(self, platforms):
         self.handle_input()
         self.apply_gravity()
         self.check_collision(platforms)
-        self.check_if_gameover()
+        #self.check_if_gameover()
 
     def draw(self):
         pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height))

@@ -13,4 +13,3 @@ class Constantes:
         pg.display.set_caption("Platformer")
         self.CLOCK = pg.time.Clock()
         self.FPS = 60
-        self.screenheight = tk.Tk().winfo_screenheight()
