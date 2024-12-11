@@ -1,5 +1,4 @@
 import pygame as pg
-import tkinter as tk
 from platforms import PlatformsManager
 from constantes import Constantes
 
@@ -10,6 +9,8 @@ class Player:
         self.const = Constantes()
         self.width = 50
         self.height = 50
+        self.coins_counter = 0
+
         # Placer le joueur sur la première plateforme
         starting_platform = self.platform_manager.platforms[0]  # Choisir la première plateforme
         self.original_x = starting_platform.left + (starting_platform.width - self.width) // 2
@@ -57,7 +58,7 @@ class Player:
         self.velocity_y += self.gravity
         self.y += self.velocity_y
 
-    def check_collision(self, platforms):
+    def check_collision(self, platforms, coins):
         self.on_ground = False
         for platform in platforms:
             if (
@@ -69,13 +70,20 @@ class Player:
                 self.y = platform.top - self.height
                 self.velocity_y = 0
                 self.on_ground = True
-                #print(self.platform_manager.platforms)
+        for coin in coins:
+            if (
+                self.x < coin.x + coin.width and
+                self.x + self.width > coin.x and
+                self.y < coin.y + coin.height and
+                self.y + self.height > coin.y
+            ):
+                coins.remove(coin)
+                self.coins_counter += 1
 
-    def update(self, platforms):
+    def update(self, platforms, coins):
         self.handle_input()
         self.apply_gravity()
-        self.check_collision(platforms)
-        #self.check_if_gameover()
+        self.check_collision(platforms, coins)
 
     def draw(self):
         pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height))

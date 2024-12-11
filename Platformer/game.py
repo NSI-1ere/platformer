@@ -2,13 +2,16 @@ import sys, os, subprocess, pygame as pg
 from player import Player
 from constantes import Constantes
 from platforms import PlatformsManager
+from coins import CoinsManager
 from load_background import load_background
+
 
 class Game:
     def __init__(self):
         self.player = Player()
         self.const = Constantes()
         self.platform_manager = PlatformsManager()
+        self.coins_manager = CoinsManager()
         self.bkgrnd = load_background()
         self.clock = self.const.CLOCK
         self.running = True
@@ -17,9 +20,8 @@ class Game:
         self.pause_inputs = False
 
         # Charger les frames du GIF
-        self.frames = self.bkgrnd.load_gif(self.chemin_repertoire + r'.\Clouds.gif')
+        self.frames = self.bkgrnd.load_gif(self.chemin_repertoire + r".\Clouds.gif")
         self.frame_index = 0
-        #self.gameover_file = sys.path.append('/platformer/gameover.py')
 
     def run(self):
         while self.running:
@@ -30,16 +32,18 @@ class Game:
                     self.running = False
                 if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                     self.running = False
-                    #subprocess.run(self.gameover_file)
 
             # Mise à jour
-            self.player.update(self.platform_manager.platforms)
+            self.player.update(
+                self.platform_manager.platforms, self.coins_manager.coins
+            )
 
             # Dessin
-            self.const.SCREEN.fill((0, 0, 0))
+            self.const.SCREEN.fill((255, 255, 255))
             self.const.SCREEN.blit(self.frames[self.frame_index], (0, 0))
             self.frame_index = (self.frame_index + 1) % len(self.frames)
             self.platform_manager.draw_platforms()
+            self.coins_manager.draw_coins()
             self.player.draw()
 
             # Défilement vertical
@@ -48,17 +52,48 @@ class Game:
                 self.player.y += offset
                 for platform in self.platform_manager.platforms:
                     platform.y += offset
+                for coin in self.coins_manager.coins:
+                    coin.y += offset
 
+            # Montrer le texte Gameover
             if self.player.check_if_gameover():
                 font = pg.font.Font(self.impact_font, 100)
                 text = font.render("Game Over!", True, self.const.RED)
-                text_rect = text.get_rect(center=(pg.display.Info().current_w // 2, pg.display.Info().current_h // 2))
+                text_rect = text.get_rect(
+                    center=(
+                        pg.display.Info().current_w // 2,
+                        pg.display.Info().current_h // 2,
+                    )
+                )
                 self.const.SCREEN.blit(text, text_rect)
 
                 font2 = pg.font.Font(self.impact_font, 50)
-                text2 = font2.render("Please press Enter to retry.", True, self.const.WHITE)
-                text2_rect = text2.get_rect(center=(pg.display.Info().current_w // 2, pg.display.Info().current_h // 2 + text_rect.height - 20))
+                text2 = font2.render(
+                    "Please press Enter to retry.", True, self.const.WHITE
+                )
+                text2_rect = text2.get_rect(
+                    center=(
+                        pg.display.Info().current_w // 2,
+                        pg.display.Info().current_h // 2 + text_rect.height - 20,
+                    )
+                )
                 self.const.SCREEN.blit(text2, text2_rect)
+
+            # Montrer le compteur de pièces
+            font_coin = pg.font.Font(self.impact_font, 50)
+            text_coin = font_coin.render(f"{self.player.coins_counter}", True, self.const.BLACK)
+            text_coin_rect = text_coin.get_rect()
+            text_coin_rect.topright = (self.const.SCREEN.get_width() - 10, 10)
+            self.const.SCREEN.blit(text_coin, text_coin_rect)
+            self.coins_manager.text_coin = [
+                pg.Rect(
+                        text_coin_rect.left - self.const.COIN_WIDTH - 10,
+                        text_coin_rect.top + text_coin_rect.height/2 - self.const.COIN_HEIGHT/2,
+                        self.const.COIN_WIDTH,
+                        self.const.COIN_HEIGHT,
+                        )
+                ]
+                
 
             # Rafraîchissement
             pg.display.flip()

@@ -9,9 +9,11 @@ class load_background:
         try:
             while True:
                 self.frame = self.image.copy()
-                self.frame = self.frame.convert('RGBA')
-                self.frame_data = self.frame.tobytes("raw", 'RGBA')
-                self.surface = pygame.image.fromstring(self.frame_data, self.frame.size, 'RGBA')
+                self.frame = self.frame.convert("RGBA")
+                self.frame_data = self.frame.tobytes("raw", "RGBA")
+                self.surface = pygame.image.fromstring(
+                    self.frame_data, self.frame.size, "RGBA"
+                )
                 self.frames.append(self.surface)
                 self.image.seek(self.image.tell() + 1)
         except EOFError:
