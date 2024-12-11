@@ -5,8 +5,9 @@ class Constantes:
     def __init__(self):
         self.WIDTH = 800
         self.HEIGHT = 600
-        self.COIN_WIDTH = 20
-        self.COIN_HEIGHT = 20
+        self.COIN_WIDTH = 25
+        self.COIN_HEIGHT = 25
+        self.COIN_PLATFORM_MARGIN = 15
         self.WHITE = (255, 255, 255)
         self.BLACK = (0, 0, 0)
         self.BLUE = (0, 0, 255)

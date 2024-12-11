@@ -42,9 +42,20 @@ class Game:
             self.const.SCREEN.fill((255, 255, 255))
             self.const.SCREEN.blit(self.frames[self.frame_index], (0, 0))
             self.frame_index = (self.frame_index + 1) % len(self.frames)
-            self.platform_manager.draw_platforms()
             self.coins_manager.draw_coins()
             self.player.draw()
+
+            platforms = self.platform_manager.platforms
+
+            if len(platforms) == 1:
+                for i in range(3):
+                    self.platform_manager.gen_platform(platforms[i])
+
+            if self.player.current_platform_index > len(platforms) - 3:
+                self.platform_manager.gen_platform(platforms[len(platforms)-1])
+
+            self.platform_manager.draw_platforms()
+            self.coins_manager.add_coins(platforms, self.coins_manager.coins)
 
             # Défilement vertical
             if self.player.y < self.const.HEIGHT // 3:
@@ -57,6 +68,8 @@ class Game:
 
             # Montrer le texte Gameover
             if self.player.check_if_gameover():
+                self.platform_manager.platforms = [self.platform_manager.starter_platform]
+                self.coins_manager.coins = []
                 font = pg.font.Font(self.impact_font, 100)
                 text = font.render("Game Over!", True, self.const.RED)
                 text_rect = text.get_rect(

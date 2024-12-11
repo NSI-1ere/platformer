@@ -13,6 +13,7 @@ class Player:
 
         # Placer le joueur sur la première plateforme
         starting_platform = self.platform_manager.platforms[0]  # Choisir la première plateforme
+        self.current_platform_index = 0
         self.original_x = starting_platform.left + (starting_platform.width - self.width) // 2
         self.original_y = starting_platform.top - self.height
         self.x = starting_platform.left + (starting_platform.width - self.width) // 2  # Centré horizontalement
@@ -27,6 +28,7 @@ class Player:
             return True
         else:
             return False
+        
 
     def handle_input(self):
         keys = pg.key.get_pressed()
@@ -70,6 +72,7 @@ class Player:
                 self.y = platform.top - self.height
                 self.velocity_y = 0
                 self.on_ground = True
+                self.current_platform_index = platforms.index(platform)
         for coin in coins:
             if (
                 self.x < coin.x + coin.width and
@@ -86,4 +89,4 @@ class Player:
         self.check_collision(platforms, coins)
 
     def draw(self):
-        pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height))
+        pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height), border_radius=3)
