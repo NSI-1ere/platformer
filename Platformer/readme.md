@@ -6,9 +6,9 @@
 
 ### To-do list:
  - Opponents
- - Coins or other goals
  - Random platforms
 
 ### Already done:
  - Launcher
  - Game Over - 10/12/2024
+ - Coins - 11/12/2024
