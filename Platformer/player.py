@@ -50,9 +50,6 @@ class Player:
         # Si le jeu est pausé, on ignore tous les inputs (Sauf entrée).
         if self.check_if_gameover() or self.check_if_won():
             return
-        
-        if keys[pg.K_p]:
-            self.coins_counter+=1
 
         # Déplacements horizontaux
         if keys[pg.K_LEFT]:
