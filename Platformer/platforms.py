@@ -14,15 +14,15 @@ class PlatformsManager:
         #Can jump and move ~100
         left_or_right = randint(0, 1)
         if left_or_right == 0:
-            left = randint(previous_platform.left - 150, previous_platform.left - 80)
+            left = randint(previous_platform.left - 120, previous_platform.left - 80)
         else: 
-            left = randint(previous_platform.left + 80, previous_platform.left + 150)
+            left = randint(previous_platform.left + 80, previous_platform.left + 120)
         top = randint(previous_platform.top - 90, previous_platform.top - 80)
         width = randint(100, 200)
         if left - width < 0:
-            left = randint(0, previous_platform.left + 150)
+            left = randint(previous_platform.left, previous_platform.left + 120)
         elif left + width > pg.display.Info().current_w:
-            left = randint(previous_platform - 150, 0)
+            left = randint(previous_platform.left - 120, previous_platform.left)
         new_platform = pg.Rect(left, top, width, 20)
         self.platforms.append(new_platform)
 
