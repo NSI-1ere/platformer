@@ -29,20 +29,30 @@ class Player:
         else:
             return False
         
+    def check_if_won(self):
+        if self.coins_counter >= self.const.WIN_COINS:
+            return True
+        else:
+            return False
+        
 
     def handle_input(self):
         keys = pg.key.get_pressed()
 
-        if (keys[pg.K_RETURN] or keys[pg.K_KP_ENTER]) and self.check_if_gameover() == True:
+        if (keys[pg.K_RETURN] or keys[pg.K_KP_ENTER]) and (self.check_if_gameover() or self.check_if_won()):
             self.x = self.original_x
             self.y = self.original_y
             self.velocity_y = 0
             self.on_ground = True
+            self.coins_counter = 0
             
 
         # Si le jeu est pausé, on ignore tous les inputs (Sauf entrée).
-        if self.check_if_gameover() == True:
+        if self.check_if_gameover() or self.check_if_won():
             return
+        
+        if keys[pg.K_p]:
+            self.coins_counter+=1
 
         # Déplacements horizontaux
         if keys[pg.K_LEFT]:
