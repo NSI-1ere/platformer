@@ -46,8 +46,7 @@
         * Nous devons faire en sorte que les platformes ne soient pas générées trop loin, ni trop près.
    * Initialement, en plus de la platforme dite 'initiale', 3 platformes sont générées aléatoirement.
 
-* Pièces
-  *Afin de donner un 'but' au jeu, nous implémentons un système de pièces.*
+* Pièces - *Afin de donner un 'but' au jeu, nous implémentons un système de pièces.*
   * Les pièces sont générées aléatoirement (50% de chance) sur les platformes
   * Les pièces sont récupérables si le joueur rentre en collision avec celles-ci. On incrémente simultanément un compteur de pièces récupérées.
   * Au bout d'un nombre, défini dans la configuration, de pièces récupérées, la partie est considérée comme gagnée.
