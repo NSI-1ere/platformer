@@ -1,9 +1,10 @@
-import sys, os, subprocess, pygame as pg
+import sys, os, pygame as pg
 from player import Player
 from constantes import Constantes
 from platforms import PlatformsManager
 from coins import CoinsManager
 from load_background import load_background
+from sprite import Sprite
 
 
 class Game:
@@ -13,35 +14,40 @@ class Game:
         self.platform_manager = PlatformsManager()
         self.coins_manager = CoinsManager()
         self.bkgrnd = load_background()
+        self.sprites = Sprite()
         self.clock = self.const.CLOCK
         self.running = True
         self.chemin_repertoire = os.path.dirname(os.path.abspath(__file__))
         self.impact_font = self.chemin_repertoire + r".\impact.ttf"
         self.pause_inputs = False
+        self.background = pg.image.load(self.chemin_repertoire + r".\Background.jpg")
 
-        # Charger les frames du GIF
-        self.frames = self.bkgrnd.load_gif(self.chemin_repertoire + r".\Clouds.gif")
-        self.frame_index = 0
+        # Obtenir les dimensions actuelles de l'écran
+        self.screen_width, self.screen_height = pg.display.get_surface().get_size()
+        # Redimensionner l'image de l'arrière-plan aux dimensions de l'écran 
+        self.resized_background = pg.transform.scale(self.background, (self.screen_width, self.screen_height))
 
     def run(self):
+        self.sprites.set_center(self.player.x, self.player.y)
         while self.running:
-
+            
             # Gestion des événements
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.running = False
                 if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                     self.running = False
+            # Récupérer les touches pressées
+            touches = pg.key.get_pressed()
 
             # Mise à jour
             self.player.update(
-                self.platform_manager.platforms, self.coins_manager.coins
+                self.platform_manager.platforms, self.coins_manager.coins, touches
             )
 
             # Dessin
             self.const.SCREEN.fill((255, 255, 255))
-            self.const.SCREEN.blit(self.frames[self.frame_index], (0, 0))
-            self.frame_index = (self.frame_index + 1) % len(self.frames)
+            self.const.SCREEN.blit(self.resized_background, (0, 0))
             self.coins_manager.draw_coins()
             self.player.draw()
 
@@ -130,7 +136,6 @@ class Game:
 
                 self.const.SCREEN.blit(text_win, text_win_rect)
                 self.const.SCREEN.blit(text2, text2_rect)
-            
 
             # Rafraîchissement
             pg.display.flip()

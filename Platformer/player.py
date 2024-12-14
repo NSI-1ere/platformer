@@ -1,6 +1,7 @@
 import pygame as pg
 from platforms import PlatformsManager
 from constantes import Constantes
+from sprite import Sprite
 
 # Classe Joueur
 class Player:
@@ -22,6 +23,14 @@ class Player:
         self.velocity_y = 0
         self.gravity = 0.5 
         self.on_ground = True
+
+        # Création d'une instance du joueur
+        self.sprites = Sprite()
+
+        # Groupe de sprites (facilite le rendu et les collisions)
+        self.all_sprites = pg.sprite.Group()
+        self.all_sprites.add(self.sprites)
+
     
     def check_if_gameover(self):
         if self.y > pg.display.Info().current_h:
@@ -90,10 +99,12 @@ class Player:
                 coins.remove(coin)
                 self.coins_counter += 1
 
-    def update(self, platforms, coins):
+    def update(self, platforms, coins, touches):
         self.handle_input()
         self.apply_gravity()
         self.check_collision(platforms, coins)
+        self.sprites.active_sprite(touches, self.on_ground, self.speed, self.x, self.y)
 
     def draw(self):
-        pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height), border_radius=3)
+        self.all_sprites.draw(self.const.SCREEN)
+        #pg.draw.rect(self.const.SCREEN, self.const.BLACK, (self.x, self.y, self.width, self.height), border_radius=3)
