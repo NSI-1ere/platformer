@@ -1,7 +1,7 @@
 # Jeu Platformer
 ##### Développé par Alaric REMY, Eliot BORDIER & Robin TEXIER.
 
-## * Sommaire
+## - Sommaire
 * Launcher
     * Fonctionnement
     * Graphismes
