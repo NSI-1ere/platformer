@@ -30,7 +30,6 @@ class Player:
         # Groupe de sprites (facilite le rendu et les collisions)
         self.all_sprites = pg.sprite.Group()
         self.all_sprites.add(self.sprites)
-
     
     def check_if_gameover(self):
         if self.y > pg.display.Info().current_h:
@@ -59,6 +58,9 @@ class Player:
         # Si le jeu est pausé, on ignore tous les inputs (Sauf entrée).
         if self.check_if_gameover() or self.check_if_won():
             return
+        
+        if keys[pg.K_p]:
+            self.coins_counter+=1
 
         # Déplacements horizontaux
         if keys[pg.K_LEFT]:

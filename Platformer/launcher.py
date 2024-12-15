@@ -61,7 +61,7 @@ chemin_platformer = Path(chemin_repertoire + r".\main.py").resolve()
 
 # Exécuter le programme
 def run_program():
-    # Femre la fenêtre principale
+    # Ferme la fenêtre principale
     root.destroy()
     # Exécuter le programme
     subprocess.run(["python", chemin_platformer])
