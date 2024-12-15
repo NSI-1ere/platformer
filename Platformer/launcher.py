@@ -52,10 +52,10 @@ chemin_repertoire = os.path.dirname(os.path.abspath(__file__))
 
 lbl = ImageLabel(container)
 lbl.place(relx=0.5, rely=0.5, anchor='center')  # Centré dans le conteneur
-lbl.load(chemin_repertoire + r'.\Launcher.gif')
+lbl.load(chemin_repertoire + r'.\Launcher_background.png')
 
 pyglet.font.add_file(chemin_repertoire + r'.\impact.ttf')
-pyglet.font.add_file(chemin_repertoire + r'.\SuperMario256.ttf')
+pyglet.font.add_file(chemin_repertoire + r"\SuperMario256.ttf")
 
 label_title = tk.Label(container, text="Platformer", font=('Super Mario 256', 50), bg="#11BEF8", fg="white")
 label_title.place(relx=0.5, rely=0.2, anchor='center')
