@@ -69,5 +69,7 @@ def run_program():
 # Créer le bouton
 button_run = tk.Button(container, text="Lancer le jeu", command=run_program, font=('Arial', 12, 'bold'), bg="blue", fg="white", cursor="hand2")  
 button_run.place(relx=0.5, rely=0.7, anchor='center')  # Position centré un peu plus bas que le centre
+root.bind("<Return>", lambda event: run_program())
+root.bind("<Escape>", lambda event: root.destroy())
 
 root.mainloop()

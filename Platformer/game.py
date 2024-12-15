@@ -5,6 +5,7 @@ from platforms import PlatformsManager
 from coins import CoinsManager
 from load_background import load_background
 from sprite import Sprite
+from pathlib import Path
 
 
 class Game:
@@ -26,6 +27,8 @@ class Game:
         self.gamewon = False
         self.pause_iteration = 0
         self.background =  pg.image.load(self.chemin_repertoire + r".\Background.jpg")
+        self.chemin_launcher = Path(self.chemin_repertoire + r".\launcher.py").resolve()
+        self.continue_game = False
 
         # Charger les frames du GIF
         #self.frames = self.bkgrnd.load_gif(self.chemin_repertoire + r".\Clouds.gif")
@@ -85,8 +88,9 @@ class Game:
                     if event.key == pg.K_ESCAPE:
                         self.running = False
                     if self.is_paused and event.key == pg.K_RETURN:
-                        subprocess.run(["python", self.chemin_repertoire + r".\main.py"])
+                        self.continue_game = True
                         self.running = False
+                        
 
             # Récupérer les touches pressées
             touches = pg.key.get_pressed()
@@ -177,6 +181,14 @@ class Game:
             # Rafraîchissement
             pg.display.flip()
             self.const.CLOCK.tick(self.const.FPS)
+
+        if self.continue_game:
+            pg.quit()
+            subprocess.run(["python", self.chemin_repertoire + r".\main.py"])
+            sys.exit()
+        
         else:
             pg.quit()
+            subprocess.run(["python", self.chemin_launcher])
             sys.exit()
+            
