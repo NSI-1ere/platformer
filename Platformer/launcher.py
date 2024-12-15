@@ -1,4 +1,5 @@
 import tkinter as tk
+import pyglet
 import subprocess
 from pathlib import Path
 from PIL import Image, ImageTk
@@ -53,8 +54,12 @@ lbl = ImageLabel(container)
 lbl.place(relx=0.5, rely=0.5, anchor='center')  # Centré dans le conteneur
 lbl.load(chemin_repertoire + r'.\Launcher.gif')
 
-label_title = tk.Label(container, text="Platformer", font=('Papyrus', 30, 'bold'), bg="grey", fg="black")
+pyglet.font.add_file(chemin_repertoire + r'.\impact.ttf')
+pyglet.font.add_file(chemin_repertoire + r'.\SuperMario256.ttf')
+
+label_title = tk.Label(container, text="Platformer", font=('Super Mario 256', 50), bg="#11BEF8", fg="white")
 label_title.place(relx=0.5, rely=0.2, anchor='center')
+
 
 # Chemin du programme Python à exécuter
 chemin_platformer = Path(chemin_repertoire + r".\main.py").resolve()
@@ -67,9 +72,7 @@ def run_program():
     subprocess.run(["python", chemin_platformer])
 
 # Créer le bouton
-button_run = tk.Button(container, text="Lancer le jeu", command=run_program, font=('Arial', 12, 'bold'), bg="blue", fg="white", cursor="hand2")  
+button_run = tk.Button(container, text="Lancer le jeu", command=run_program, font=('impact', 20), bg="#66CC66", fg="white", cursor="hand2")
 button_run.place(relx=0.5, rely=0.7, anchor='center')  # Position centré un peu plus bas que le centre
-root.bind("<Return>", lambda event: run_program())
-root.bind("<Escape>", lambda event: root.destroy())
 
 root.mainloop()
