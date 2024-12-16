@@ -8,8 +8,8 @@ class Player:
     def __init__(self):
         self.platform_manager = PlatformsManager()
         self.const = Constantes()
-        self.width = 50
-        self.height = 50
+        self.width = 70
+        self.height = 70
         self.coins_counter = 0
 
         # Placer le joueur sur la première plateforme
@@ -102,7 +102,7 @@ class Player:
         self.handle_input()
         self.apply_gravity()
         self.check_collision(platforms, coins)
-        self.sprites.active_sprite(touches, self.on_ground, self.speed, self.x, self.y)
+        self.sprites.active_sprite(touches, self.on_ground, self.x, self.y, self.width, self.height)
 
     def draw(self):
         self.all_sprites.draw(self.const.SCREEN)

@@ -29,7 +29,7 @@ class Sprite(pygame.sprite.Sprite):
         # Initialiser la position du joueur
         self.rect.center = (player_x, player_y)
 
-    def active_sprite(self, touches, ground, speed, player_x, player_y):
+    def active_sprite(self, touches, ground, player_x, player_y, width, height):
         # Déplacement basé sur les touches pressées
         self.rect.y = player_y
         self.rect.x = player_x
@@ -37,19 +37,19 @@ class Sprite(pygame.sprite.Sprite):
             if self.image_path != self.image_jump:
                 self.image_path = self.image_jump
                 self.image = pygame.image.load(self.image_path).convert_alpha()
-                self.image = pygame.transform.scale(self.image, (50, 50))
+                self.image = pygame.transform.scale(self.image, (width, height))
         if ground == True:
             if self.image_path != self.image_landed:
                 self.image_path = self.image_landed
                 self.image = pygame.image.load(self.image_path).convert_alpha()
-                self.image = pygame.transform.scale(self.image, (50, 50))
+                self.image = pygame.transform.scale(self.image, (width, height))
         if ground == True and touches[pygame.K_LEFT]:
             if self.image_path != self.image_left:
                 self.image_path = self.image_left
                 self.image = pygame.image.load(self.image_path).convert_alpha()
-                self.image = pygame.transform.scale(self.image, (50, 50))
-        if touches[pygame.K_RIGHT]:
+                self.image = pygame.transform.scale(self.image, (width, height))
+        if ground == True and touches[pygame.K_RIGHT]:
             if self.image_path != self.image_right:
                 self.image_path = self.image_right
                 self.image = pygame.image.load(self.image_path).convert_alpha()
-                self.image = pygame.transform.scale(self.image, (50, 50))
+                self.image = pygame.transform.scale(self.image, (width, height))
