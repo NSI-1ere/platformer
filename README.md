@@ -1,6 +1,6 @@
 # - Projet N°1 de NSI: Platformer -
 _Premier projet en NSI du groupe Eliot, Alaric et Robin_
-#### Comme précisé dans la license MIT associée à ce projet, vous êtes dans l'obligation de mentionner les auteurs si vous souhaitez réutiliser des morceaux de code provenant de ce projet.
+#### Comme précisé dans la license MIT associée à ce projet, vous êtes dans l'obligation de mentionner les auteurs si vous souhaitez réutiliser des morceaux de code provenant de celui-ci. Vous êtes priés de lire LICENSE.
 
 ## - Contrôles -
 * Flèches: gauche & droite
