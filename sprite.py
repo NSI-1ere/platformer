@@ -21,7 +21,7 @@ class Sprite(pygame.sprite.Sprite):
         self.image_right = self.chemin_repertoire + r"\Right.png"
         self.image = pygame.image.load(self.image_path).convert_alpha()
         # Redimensionner l'image (optionnel)
-        self.image = pygame.transform.scale(self.image, (50, 50))  # Ajustez la taille selon vos besoins
+        self.image = pygame.transform.scale(self.image, (25, 25))  # Ajustez la taille selon vos besoins
         # Obtenir le rectangle de l'image
         self.rect = self.image.get_rect()
 
