@@ -1,10 +1,15 @@
-# - Projet N°1 de NSI -
+# - Projet N°1 de NSI: Platformer -
 _Premier projet en NSI du groupe Eliot, Alaric et Robin_
+#### Comme précisé dans la license MIT associée à ce projet, vous êtes dans l'obligation de mentionner les auteurs si vous souhaitez réutiliser des morceaux de code provenant de ce projet.
 
-* Idées:
-  > 🕹️ Platformer simple <br>
-  > 🕹️ Imitation du mini-jeu "Tanks" de Wii Play <br>
-  > 🕹️ Recréation de Geometry Dash (non dans son entièreté) <br> 
-  > 🕹️ Jeu de farm (idle ou "actif") <br>
-
-### _Allez on se motive pour le 20/20 mdrr_
+## - Contrôles -
+* Flèches: gauche & droite
+  * Permet de se déplacer de gauche à droite
+* Espace
+  * Permet au joueur de sauter
+* Echap
+  * Permet de quitter le jeu / launcher.
+* Entrée
+  * Permet de lancer le jeu via le launcher / relancer une partie.
+  
+  
