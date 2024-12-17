@@ -12,8 +12,8 @@ _Premier projet en NSI du groupe Eliot, Alaric et Robin_
 * Entrée
   * Permet de lancer le jeu via le launcher / relancer une partie.
 
-  ## - Lancement -
-  * Afin de lancer le jeu, veuillez exécuter les commandes suivantes, dans l'ordre.
+## - Lancement -
+* Afin de lancer le jeu, veuillez exécuter les commandes suivantes, dans l'ordre.
    * `pip install -r requirements.txt` ou `py -m pip install -r requirements.txt` - Installe les librairies nécessaires au fonctionnement du jeu.
    * `py launcher.py` - Exécute le launcher
    * [Optionnel] Si vous souhaitez exécuter le jeu directement, exécutez la commande `py main.py`.
